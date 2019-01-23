@@ -1,19 +1,14 @@
 var express = require('express');
 var router = express.Router();
-
-
-
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
-var conn = MongoClient.connect(url) // returns a Promise
-
-
+var conn = MongoClient.connect(url);
 const app = express();
+
 server = app.listen(3001);
 const io = require("socket.io")(server)
 
 io.on('connection', (socket) => {
-
   console.log('user connected');
   socket.on('message', (message) => {
     console.log("Message Received: " + message);
@@ -22,7 +17,6 @@ io.on('connection', (socket) => {
 });
 
 
-//router.options('/',cors());
 router.post('/', function(req, res, next) {
 
   var newURL = req.body["url"];
